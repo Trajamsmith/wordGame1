@@ -103197,8 +103197,11 @@ var state = {
         this.badges = game.add.group();
         badgeGraphics = game.add.graphics(0,0);
         badgeGraphics.beginFill(0x0edcfb, 1);
-        badgeGraphics.drawCircle(375, 650, 100);
+        badgeGraphics.drawCircle(415, 615, 15);
+        badgeText = game.make.text(415, 615, "2", { font: "bold 26px Arial", fill: "white" });
+        badgeText.anchor.set(0.5);
         this.badges.add(badgeGraphics);
+        this.badges.add(badgeText);
 
         //second rectangle around the first
         graphics.drawRect(boardRectX - 4, boardRectY - 4, boardSize + 8, boardSize + 8);
@@ -103312,6 +103315,9 @@ var state = {
     update: function() {
         // State Update Logic goes here.
 
+        //bring the input tile overlap badge to the top
+        game.world.bringToTop(this.badges);
+
         //spin the input tile if moused over
         if (this.inputSquareOne.input.pointerOver()){
             //this.inputSquareOne.angle += 5;
@@ -103359,18 +103365,18 @@ function onDragStop(sprite, pointer) {
         sprite.y = invBoardRectY - 65;
         console.log("bottom right");
         console.log(pointer.x, pointer.y)
-    } else if (sprite.z == 13){
+    } else if (sprite.z == 11){
         sprite.x = 225;
         sprite.y = 650;
         console.log("no drop point");
         console.log(pointer.x, pointer.y)
-    } else if (sprite.z == 14 || sprite.z == 15){
+    } else if (sprite.z == 12 || sprite.z == 13){
         sprite.x = 375;
         sprite.y = 650;
         console.log("no drop point");
         console.log(sprite.x, sprite.y);
         console.log(pointer.x, pointer.y)
-    } else if (sprite.z == 16){
+    } else if (sprite.z == 14){
         sprite.x = 225;
         sprite.y = 775;
         console.log("no drop point");
